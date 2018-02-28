@@ -7,7 +7,30 @@
 <ion-content padding>
   <h2>Welcome to Ionic!</h2>
   <ion-list>
-    <ion-item>Item 1</ion-item>
-    <ion-item>Item 2</ion-item>
+
+
+
+
+
+
+
+
+
+<ion-item *ngFor="let elem of todolist"> 
+<button (click)="goToOtherPage()">
+    {{ elem?.name }}
+</button>
+</ion-item>
+
+<!--
+	
+
+
+
+		<button (click)="goToOtherPage()">
+			<ion-list>Liste 1</ion-list>
+		</button>
+		<ion-list>Liste 2</ion-list>
+		-->
   </ion-list>
 </ion-content>
