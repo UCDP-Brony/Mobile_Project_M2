@@ -16,14 +16,14 @@
 
 
 
-<ion-item *ngFor="let elem of todolist"> 
-<button (click)="goToOtherPage()">
+<ion-item *ngFor="let elem of todolist">
+<button (click)="goToOtherPage(elem.uuid)">
     {{ elem?.name }}
 </button>
 </ion-item>
 
 <!--
-	
+
 
 
 

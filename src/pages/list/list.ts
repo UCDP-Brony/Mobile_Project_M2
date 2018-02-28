@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams  } from 'ionic-angular';
 import { TodoServiceProvider } from '../../providers/todo-service/todo-service';
 
 
@@ -9,14 +9,16 @@ import { TodoServiceProvider } from '../../providers/todo-service/todo-service';
 })
 export class ListPage {
 
-	public todolist: TodoList[];
+	public todoitem: TodoItem[];
 	subscription: Subscription;
-
-  constructor(public navCtrl: NavController, public todoservice: TodoServiceProvider) {
+  public uuid;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public todoservice: TodoServiceProvider) {
+    this.uuid = navParams.get('uuid');
+    console.log(this.uuid);
 
   }
-	ngOnInit(){
-		this.todoservice.getList().subscribe(todolist => { this.todolist = todolist; });
+	ngOnInit(uuid){
+		this.todoservice.getTodos('uuid').subscribe(todoitem => { this.todoitem = todoitem; });
  	 }
 
 }
