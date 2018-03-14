@@ -7,8 +7,13 @@
 <ion-content padding>
   <h2>Welcome to Ionic!</h2>
   <ion-list>
-		<ion-list>Todo 1</ion-list>
-		<ion-list>Todo 2</ion-list>
+	<ion-item-sliding *ngFor="let item of todoitem">
+	<ion-item>
+       		<h2>{{item.name}}</h2>
+        	<br>
+        	<p>{{item.content}}</p>
+     	 </ion-item>
+	</ion-item-sliding>
   </ion-list>
 
   {{uuid}}

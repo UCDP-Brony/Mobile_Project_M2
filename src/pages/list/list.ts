@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams  } from 'ionic-angular';
 import { TodoServiceProvider } from '../../providers/todo-service/todo-service';
-
+import { TodoItem } from './../../models/model';
 
 @Component({
   selector: 'page-list',
@@ -13,12 +13,12 @@ export class ListPage {
 	subscription: Subscription;
   public uuid;
   constructor(public navCtrl: NavController, public navParams: NavParams, public todoservice: TodoServiceProvider) {
-    this.uuid = navParams.get('uuid');
+    this.uuid = this.navParams.get('uuid');
     console.log(this.uuid);
-
+	this.loadTodo(this.navParams.get('uuid'));
   }
-	ngOnInit(uuid){
-		this.todoservice.getTodos('uuid').subscribe(todoitem => { this.todoitem = todoitem; });
+	private loadTodo(uuid: string){
+		this.todoservice.getTodos(uuid).subscribe(item => { this.todoitem = item; });
  	 }
 
 }

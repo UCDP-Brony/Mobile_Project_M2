@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController} from 'ionic-angular';
+import { NavController,  NavParams} from 'ionic-angular';
 import { ListPage } from '../list/list';
 import { TodoServiceProvider } from '../../providers/todo-service/todo-service';
 import { Subscription } from 'rxjs/Subscription';
