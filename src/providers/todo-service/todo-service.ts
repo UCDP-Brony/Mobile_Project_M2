@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import {TodoItem, TodoList} from "../../model/model";
+import {TodoItem, TodoList} from "../../models/model";
 import {Observable} from "rxjs/Observable";
 import 'rxjs/Rx';
 
@@ -78,4 +78,30 @@ export class TodoServiceProvider {
       items.splice(index,1);
     }
   }
+
+	
+  public deleteTodoList(listUuid: String) {
+    let index = this.data.findIndex(value => value.uuid == listUuid);
+    if (index != -1) {
+      this.data.splice(index, 1);
+    }
+  }
+
+
+	public addTodoList(name: string) {
+	    let todoList = {
+	      uuid: this.genUuid(),
+	      name: name,
+	      items: []
+	    };
+	    this.data.push(todoList);
+ 	}
+
+	  public genUuid() {
+	    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+	      var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+	      return v.toString(16);
+	    });
+	  }
+
 }

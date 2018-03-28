@@ -5,16 +5,22 @@
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
+  <h2>TodoList Ionic - {{list.name}}</h2>
   <ion-list>
 	<ion-item-sliding *ngFor="let item of todoitem">
 	<ion-item>
-       		<h2>{{item.name}}</h2>
-        	<br>
-        	<p>{{item.content}}</p>
+       			<h2>{{item.name}}</h2>
+        	<ion-badge (click)="completeTask(item)" item-end color="{{ (item.complete) ? 'secondary' : 'danger'}}" item-end>
+        		<p>{{(item.complete) ? 'Fait' : 'A faire'}}</p>
+		</ion-badge>
      	 </ion-item>
+	<ion-item-options side="right">
+        	<button ion-button color="danger" (click)="showConfirmDelete(slidingItem, item , uuid)">
+          		<ion-icon color="light" name="trash"></ion-icon>
+         		Supprimer
+        	</button>
+      	</ion-item-options>
 	</ion-item-sliding>
   </ion-list>
-
-  {{uuid}}
 </ion-content>
+

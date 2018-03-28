@@ -5,22 +5,31 @@
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <ion-list>
-
-
-
-
-
-
-
-
-
-<ion-item *ngFor="let elem of todolist">
-<button (click)="goToOtherPage(elem.uuid)">
-    {{ elem?.name }}
-</button>
+  <h2>TodoList Ionic - Listes</h2>
+<ion-item>
+	<button ion-button  item-end color="secondary" round (click)='showPromptCreate()' >
+		Ajouter une liste
+	</button>
 </ion-item>
+<ion-list>
+
+<ion-item-sliding *ngFor="let elem of todolist">
+	<ion-item>
+		<button (click)="goToOtherPage(elem)">
+		    {{ elem?.name }}
+		</button>
+		<ion-avatar item-end>
+			<span item-end>{{ calculReste(elem) }} restant{{calculReste(elem) > 1 ? 's':'' }} 
+	       		   sur {{ elem.items.length }} </span>
+		</ion-avatar>
+	</ion-item>
+	<ion-item-options side="right">
+        	<button ion-button color="danger" (click)="showConfirmDelete(slidingItem, elem)">
+          		<ion-icon color="light" name="trash"></ion-icon>
+         		Supprimer
+        	</button>
+      	</ion-item-options>
+</ion-item-sliding>
 
 <!--
 
@@ -32,5 +41,5 @@
 		</button>
 		<ion-list>Liste 2</ion-list>
 		-->
-  </ion-list>
+</ion-list>
 </ion-content>
