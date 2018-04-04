@@ -3,6 +3,7 @@ import { NavController, NavParams, AlertController, ItemSliding, ModalController
 import { TodoServiceProvider } from '../../providers/todo-service/todo-service';
 import { Subscription } from 'rxjs/Subscription';
 import { TodoItem } from './../../models/model';
+import { ModalCreate } from './list-modal';
 
 @Component({
   selector: 'page-list',
@@ -16,8 +17,9 @@ export class ListPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public todoservice: TodoServiceProvider, public alertCtrl: AlertController, public modalCtrl: ModalController, private toastCtrl: ToastController) {
 	const  list = this.navParams.get('list');
     	this.list = list;
+	this.uuid = list.uuid;
 	this.loadTodo(list.uuid);
-
+	
   }
 	private loadTodo(uuid: string){
 		this.todoservice.getTodos(uuid).subscribe(item => { this.todoitem = item; });
@@ -58,14 +60,22 @@ export class ListPage {
 	    confirm.present();
 	}
 	
-	  public showModalCreate(uuid: string) {
-	    let modal = this.modalCtrl.create(ModalAddTodo, { uuid: uuid });
+	 public showModalCreate(uuid: string) {
+	    let modal = this.modalCtrl.create(ModalCreate, { uuid: uuid });
 	    modal.onDidDismiss(() => {
 
 	      this.loadTodo(uuid);
 	    });
 	    modal.present();
 
+	  }
+
+	  public showModalUpdate(slidingItem: ItemSliding, item: TodoItem, uuid: string) {
+	    let modal = this.modalCtrl.create(ModalCreate, {uuid: uuid, todo: item});
+	    modal.onDidDismiss(() => {this.loadTodo(uuid);
+	      slidingItem.close();
+	    });
+	    modal.present();
 	  }
 
 

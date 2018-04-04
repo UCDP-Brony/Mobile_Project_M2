@@ -97,6 +97,16 @@ export class TodoServiceProvider {
 	    this.data.push(todoList);
  	}
 
+
+
+	public addTodo(listUuid: String, editedItem: TodoItem) {
+	    let todolist = this.data.find(d => d.uuid == listUuid);
+	    todolist.items.push(editedItem);
+	    let index = this.data.findIndex(value => value.uuid == editedItem);
+	    this.data[index] = todolist;
+	}
+
+
 	  public genUuid() {
 	    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
 	      var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);

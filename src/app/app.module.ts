@@ -9,6 +9,7 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { TabsPage } from '../pages/tabs/tabs';
 import { ItemComponent} from '../components/item/item';
+import { ModalCreate} from '../pages/list/list-modal';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -22,7 +23,8 @@ import { TodoServiceProvider } from '../providers/todo-service/todo-service';
     HomePage,
     TabsPage,
     ListPage,
-    ItemComponent
+    ItemComponent,
+    ModalCreate
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,8 @@ import { TodoServiceProvider } from '../providers/todo-service/todo-service';
     ContactPage,
     HomePage,
     TabsPage,
-    ListPage
+    ListPage,
+    ModalCreate
   ],
   providers: [
     StatusBar,

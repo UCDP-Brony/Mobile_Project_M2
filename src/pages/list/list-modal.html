@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar color="primary">
+  
+    <ion-title>
+      Ajouter une tache
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <h2>Dans la liste {{todolist.name}}</h2>
+  <form (ngSubmit)="pushForm()">
+    <ion-item>
+      <ion-label floating>Nom de la tâche</ion-label>
+      <ion-input type="text" [(ngModel)]="todoitem.name" name="name"></ion-input>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-checkbox item-end [(ngModel)]="todoitem.complete" name="complete"></ion-checkbox>
+      <ion-label item-start>Terminée ? </ion-label>
+    </ion-item>
+    <button ion-button type="submit" block>{{new ? 'Ajouter' : 'Modifier'}}</button>
+  </form>
+
+</ion-content>

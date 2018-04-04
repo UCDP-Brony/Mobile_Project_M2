@@ -6,6 +6,11 @@
 
 <ion-content padding>
   <h2>TodoList Ionic - {{list.name}}</h2>
+  <ion-item>
+	  <button ion-button item-end color="secondary" round (click)='showModalCreate(uuid)'>
+	  	Ajouter une tâche
+	  </button>
+  </ion-item>
   <ion-list>
 	<ion-item-sliding *ngFor="let item of todoitem">
 	<ion-item>
@@ -14,6 +19,12 @@
         		<p>{{(item.complete) ? 'Fait' : 'A faire'}}</p>
 		</ion-badge>
      	 </ion-item>
+      <ion-item-options side="left">
+		<button ion-button color="primary" (click)="showModalUpdate(slidingItem, item , uuid)">
+		  <ion-icon color="light" name="brush"></ion-icon>
+		  Editer
+		</button>
+      </ion-item-options>
 	<ion-item-options side="right">
         	<button ion-button color="danger" (click)="showConfirmDelete(slidingItem, item , uuid)">
           		<ion-icon color="light" name="trash"></ion-icon>
