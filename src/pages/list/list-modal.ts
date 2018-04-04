@@ -12,7 +12,7 @@ export class ModalCreate {
 
     constructor(private toastCtrl: ToastController, private navParams: NavParams, private viewCtrl: ViewController, private todoservice: TodoServiceProvider) {
         this.uuid = this.navParams.get('uuid');
-        this.todolist = this.todoservice.getTodos(this.uuid);
+        this.todolist = this.todoservice.getTodoList(this.uuid);
         if (this.navParams.get('todoitem')) {
             this.new = false;
             this.todoitem = this.navParams.get('todoitem');
@@ -20,7 +20,6 @@ export class ModalCreate {
             this.todoitem = {
                 uuid: this.todoservice.genUuid(),
                 name: '',
-                content: '',
                 complete: false
             }
         }
