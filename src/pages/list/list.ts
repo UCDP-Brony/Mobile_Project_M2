@@ -71,7 +71,7 @@ export class ListPage {
 	  }
 
 	  public showModalUpdate(slidingItem: ItemSliding, item: TodoItem, uuid: string) {
-	    let modal = this.modalCtrl.create(ModalCreate, {uuid: uuid, todo: item});
+	    let modal = this.modalCtrl.create(ModalCreate, {uuid: uuid, todoitem: item});
 	    modal.onDidDismiss(() => {this.loadTodo(uuid);
 	      slidingItem.close();
 	    });
