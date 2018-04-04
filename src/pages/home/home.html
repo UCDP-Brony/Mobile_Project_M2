@@ -13,7 +13,7 @@
 </ion-item>
 <ion-list>
 
-<ion-item-sliding *ngFor="let elem of todolist">
+<ion-item-sliding *ngFor="let elem of todolist" #slidingItem>
 	<ion-item>
 		<button (click)="goToOtherPage(elem)">
 		    {{ elem?.name }}
@@ -23,6 +23,12 @@
 	       		   sur {{ elem.items.length }} </span>
 		</ion-avatar>
 	</ion-item>
+	<ion-item-options side="left">
+		<button ion-button color="primary" (click)="showPromptUpdate(slidingItem, elem)" >
+		  <ion-icon color="light" name="brush"></ion-icon>
+		  Edit
+		</button>
+	</ion-item-options>
 	<ion-item-options side="right">
         	<button ion-button color="danger" (click)="showConfirmDelete(slidingItem, elem)">
           		<ion-icon color="light" name="trash"></ion-icon>

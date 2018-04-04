@@ -64,7 +64,7 @@ export class TodoServiceProvider {
     return Observable.of(this.data.find(d => d.uuid == uuid).items)
   }
 
-   public getTodoList(uuid: String): TodoList {
+  public getTodoList(uuid: String): TodoList {
     return this.data.find(d => d.uuid == uuid);
   }
 
@@ -73,7 +73,13 @@ export class TodoServiceProvider {
     let index = items.findIndex(value => value.uuid == editedItem.uuid);
     items[index] = editedItem;
   }
+	  public editTodoList(elem: TodoList) {
+	    let list = this.data.find(d => d.uuid == elem.uuid);
+	    list.name = elem.name;
+	    let index = this.data.findIndex(value => value.uuid == elem.uuid);
+	    this.data[index] = list;
 
+	  }
   public deleteTodo(listUuid: String, uuid: String) {
     let items = this.data.find(d => d.uuid == listUuid).items;
     let index = items.findIndex(value => value.uuid == uuid);
@@ -105,7 +111,7 @@ export class TodoServiceProvider {
 	public addTodo(listUuid: String, editedItem: TodoItem) {
 	    let todolist = this.data.find(d => d.uuid == listUuid);
 	    todolist.items.push(editedItem);
-	    let index = this.data.findIndex(value => value.uuid == editedItem);
+	    let index = this.data.findIndex(value => value.uuid == listUuid);
 	    this.data[index] = todolist;
 	}
 

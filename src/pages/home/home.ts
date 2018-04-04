@@ -29,8 +29,8 @@ export class HomePage {
     return count;
   }
 
-	goToOtherPage(list){
-		this.navCtrl.push(this.pushPage, {list: list});
+	goToOtherPage(elem: TodoList){
+		this.navCtrl.push(this.pushPage, {uuid: elem.uuid});
   	}
 	private loadTodoList(){
 		this.todoservice.getList().subscribe(todolist => { this.todolist = todolist; });
@@ -90,6 +90,36 @@ export class HomePage {
 		    }
 		  }
 		}]
+	    });
+	    prompt.present();
+	  }
+
+	  public showPromptUpdate(ItemSliding: ItemSliding, elem: TodoList) {
+	    let prompt = this.alertCtrl.create({
+	      title: 'Listes',
+	      message: "Modifier la liste " + elem.name,
+	      inputs: [
+		{
+		  name: 'name',
+		  placeholder: 'Nom',
+		  value: elem.name
+		},
+	      ],
+	      buttons: [
+		{
+		  text: 'Annuler',
+		  handler: data => { ItemSliding.close(); }
+		},
+		{
+		  text: 'Enregistrer',
+		  handler: data => {
+		    elem.name = data.name;
+		    this.todoservice.editTodoList(elem);
+		    this.loadTodoList();
+		    ItemSliding.close();
+		  }
+		}
+	      ]
 	    });
 	    prompt.present();
 	  }

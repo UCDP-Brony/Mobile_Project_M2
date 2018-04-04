@@ -5,14 +5,14 @@
 </ion-header>
 
 <ion-content padding>
-  <h2>TodoList Ionic - {{list.name}}</h2>
+  <h2>TodoList Ionic </h2>
   <ion-item>
 	  <button ion-button item-end color="secondary" round (click)='showModalCreate(uuid)'>
 	  	Ajouter une tâche
 	  </button>
   </ion-item>
   <ion-list>
-	<ion-item-sliding *ngFor="let item of todoitem">
+	<ion-item-sliding *ngFor="let item of todoitem" #slidingItem>
 	<ion-item>
        			<h2>{{item.name}}</h2>
         	<ion-badge (click)="completeTask(item)" item-end color="{{ (item.complete) ? 'secondary' : 'danger'}}" item-end>

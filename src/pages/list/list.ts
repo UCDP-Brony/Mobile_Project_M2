@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, ItemSliding, ModalController, ToastController } from 'ionic-angular';
 import { TodoServiceProvider } from '../../providers/todo-service/todo-service';
 import { Subscription } from 'rxjs/Subscription';
-import { TodoItem } from './../../models/model';
+import { TodoItem, TodoList } from './../../models/model';
 import { ModalCreate } from './list-modal';
 
 @Component({
@@ -11,14 +11,14 @@ import { ModalCreate } from './list-modal';
 })
 export class ListPage {
 
-	public todoitem: TodoItem[];
+	todoitem: TodoItem[];
 	subscription: Subscription;
-	public uuid;
+	uuid: string;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public todoservice: TodoServiceProvider, public alertCtrl: AlertController, public modalCtrl: ModalController, private toastCtrl: ToastController) {
-	const  list = this.navParams.get('list');
-    	this.list = list;
-	this.uuid = list.uuid;
-	this.loadTodo(list.uuid);
+	
+	this.uuid =  this.navParams.get('uuid');
+	this.loadTodo(this.uuid);
 	
   }
 	private loadTodo(uuid: string){
